@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies (if any)
+        run: |
+          set -e
+          if [ -f "TP 4/requirements.txt" ]; then pip install -r "TP 4/requirements.txt"; fi
+          if [ -f "TP 5/requirements.txt" ]; then pip install -r "TP 5/requirements.txt"; fi
+
+      - name: Lint (syntax check)
+        run: |
+          python -m compileall "TP 2" "TP 3" "TP 4" "TP 5"
