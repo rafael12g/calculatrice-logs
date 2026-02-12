@@ -12,3 +12,5 @@ Mini-projet Python utilisant le module logging.
 ```bash
 python calculatrice.py
 ```
+
+azeazeaze
